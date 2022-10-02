@@ -41,14 +41,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('user', UserController::class);
     
-    Route::resource('campaign', CampaignController::class);
+    Route::controller(CampaignController::class)->group(function (){ 
+        Route::get('campaign', 'index')->name('campaign');
+        Route::get('campaign/view', 'campaignView')->name('campaign.view');
+        Route::get('campaign/subscribe', 'campaignSubscribe')->name('campaign.subscribe');
+    });
 
     Route::resource('advertise', AdvertiseController::class);
 
     Route::controller(PriceController::class)->group(function (){ 
         Route::get('price-list', 'index')->name('price-list');
         Route::get('add/campaign/price', 'createCampaignPrice')->name('add/campaign/price');
-        Route::get('edit/campaign/price/{$id}', 'editCampaignPrice')->name('edit/campaign/price');
+        Route::get('edit/{$id}/campaign-price', 'editCampaignPrice')->name('edit/campaign/price');
         Route::post('update/campaign/price/{$id}', 'updateCampaignPrice')->name('update/campaign/price');
         Route::get('add/earn/price', 'createEarnPrice')->name('add/earn/price');
     });

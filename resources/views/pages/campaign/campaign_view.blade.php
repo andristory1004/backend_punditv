@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Campaign List')
+@section('title', 'Campaign View')
 @section('main')
     <div class="py-3 pb-12 rounded-t-3xl px-10 w-full">
         <div class="flex items-center text-white space-x-3 font acme">
@@ -11,21 +11,22 @@
             </p>
         </div>
         <div class="flex mt-5 text-white font-medium font-acme space-x-5 text-xs items-center mb-5">
-            {{-- button --}}
-            <p class="flex space-x-3 px-6 py-2.5 bg-gray-300 uppercase rounded shadow-md hover:shadow-lg active:shadow-lg transition duration-150 text-black ease-in-out h-fit text-center w-fit items-center disabled:bg-dark-a"
-                disable>
+
+            {{-- Button --}}
+            <a href={{ route('campaign') }}
+                class="flex space-x-3 px-6 py-2.5 bg-blue hover:bg-opacity-70 uppercase rounded shadow-md hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out h-fit text-center w-fit items-center">
                 <i class="fas fa-eye"></i>
                 <span class="font-acme">
                     All Campaign
                 </span>
-            </p>
-            <a href={{ route('campaign.view') }}
-                class="flex space-x-3 px-6 py-2.5 bg-blue hover:bg-opacity-70 uppercase rounded shadow-md hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out h-fit text-center w-fit items-center">
+            </a>
+            <p class="flex space-x-3 px-6 py-2.5 bg-gray-300 uppercase rounded shadow-md hover:shadow-lg active:shadow-lg transition duration-150 text-black ease-in-out h-fit text-center w-fit items-center disabled:bg-dark-a"
+                disable>
                 <i class="fas fa-eye"></i>
                 <span class="font-acme">
                     Campaign View
                 </span>
-            </a>
+            </p>
             <a href={{ route('campaign.subscribe') }}
                 class="flex space-x-3 px-6 py-2.5 bg-blue hover:bg-opacity-70 uppercase rounded shadow-md hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out h-fit text-center w-fit items-center">
                 <i class="fas fa-eye"></i>
@@ -65,9 +66,6 @@
                     </th>
                     <th scope="col" class="px-2 py-2 text-sm font-medium text-white border-r border-white w-80">
                         Name
-                    </th>
-                    <th scope="col" class="px-2 py-2 text-sm font-medium text-white border-r border-white">
-                        Campaign Type
                     </th>
                     <th scope="col" class="px-2 py-2 text-sm font-medium text-white border-r border-white">
                         Campaign Category
@@ -111,9 +109,6 @@
                         <td class="px-2 py-2 text-sm border-b border-r ">{{ $no++ }}</td>
                         <td class="px-2 py-2 text-sm border-b border-r  text-left">
                             {{ $item->user->name }}
-                        </td>
-                        <td class="px-2 py-2 text-sm border-b border-r ">
-                            {{ $item->campaignType->type }}
                         </td>
                         <td class="px-2 py-2 text-sm border-b border-r ">
                             {{ $item->campaignCategory->category }}

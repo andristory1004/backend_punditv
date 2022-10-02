@@ -72,7 +72,7 @@
                         User Data
                     </span>
                 </a>
-                <a href={{ route('campaign.index') }}
+                <a href={{ route('campaign') }}
                     class="{{ request()->is('campaign') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
                     <img src={{ asset('icons/icon_campaign.png') }} alt="Icon Advertise" width="25px">
                     <span class="font-bold text-white">

@@ -19,7 +19,7 @@
         </div>
 
         <div>
-            <a href={{ route('campaign.index') }}
+            <a href={{ route('campaign') }}
                 class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
                 <div class="text-white font-acme text-center">
                     <p class="">
@@ -81,41 +81,71 @@
 
     {{-- Script Line Chart --}}
     <script>
-        var xValues = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
-            'November', 'December'
-        ];
-        var yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15, 10];
+        // var xValues = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+        //     'November', 'December'
+        // ];
+        // var yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15, 10];
         // var xValues = ['January', 'February', 'March', 'April', 'May', 'June', 'July'.
         //     'August', 'September', 'Oktober', 'November', 'December'
         // ];
+
+        // new Chart("myChart", {
+        //     type: "line",
+        //     data: {
+        //         labels: xValues,
+        //         datasets: [{
+        //             label: 'Campaign Data ',
+        //             data: yValues,
+        //             fill: false,
+        //             lineTension: 0,
+        //             backgroundColor: "red",
+        //             borderColor: "blue",
+        //             pointRadius: 10,
+        //             pointOpacity: 30,
+        //             pointHoverRadius: 15,
+        //         }]
+        //     },
+        //     options: {
+        //         legend: {
+        //             display: false
+        //         },
+        //         scales: {
+        //             yAxes: [{
+        //                 ticks: {
+        //                     min: 6,
+        //                     max: 16
+        //                 }
+        //             }],
+        //         }
+        //     }
+        // });
+
+
+        var xValues = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+            'November', 'December'
+        ];
 
         new Chart("myChart", {
             type: "line",
             data: {
                 labels: xValues,
                 datasets: [{
-                    label: 'Campaign Data ',
-                    data: yValues,
-                    fill: false,
-                    lineTension: 0,
-                    backgroundColor: "red",
+                    data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+                    borderColor: "red",
+                    fill: false
+                }, {
+                    data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+                    borderColor: "green",
+                    fill: false
+                }, {
+                    data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
                     borderColor: "blue",
-                    pointRadius: 10,
-                    pointOpacity: 30,
-                    pointHoverRadius: 15,
+                    fill: false
                 }]
             },
             options: {
                 legend: {
                     display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            min: 6,
-                            max: 16
-                        }
-                    }],
                 }
             }
         });

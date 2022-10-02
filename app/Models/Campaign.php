@@ -23,6 +23,7 @@ class Campaign extends Model
             'current_subscribes',
             'watch_time',
             'number_of_subscribes',
+            'method_payment',
             'price',
             'total'
     ];

@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 @section('title', 'Edit Admin')
 @section('main')
-    <form action={{ route('admin.store') }} method="post" enctype="multipart/form-data">
+    <form action={{ route('admin.update', $admin->id) }} method="post" enctype="multipart/form-data">
+        @method('PUT')
         @csrf
         <div class="w-full">
             <div class="flex justify-start space-x-4 px-5">
@@ -18,15 +19,10 @@
             </div>
             <div class="flex justify-center">
                 <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
-                    <label for="name" class="form-label inline-block mb-2 text-white font-acme">Name</label>
-                    <input type="name"
-                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme "
-                        id="name" name="name" placeholder="Enter name" value={{ $admin->name }} />
-                    @error('name')
-                        <div class="text-red ">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                    <div
+                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme ">
+                        {{ $admin->name }}
+                    </div>
 
                     <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Email</label>
                     <input type="email"
@@ -81,36 +77,16 @@
                 </div>
                 <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
                     <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Picture</label>
-                    <img src="" class="preview w-1/2 mb-3 mx-auto rounded-xl shadow-2xl" alt="">
-                    <input type="file"
-                        class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme"
-                        id="picture" name="picture" onchange="previewImage()" value={{ $admin->picture }} />
-                    @error('picture')
-                        <div class="text-red ">
-                            {{ $message }}
+                    @if ($admin->picture == null)
+                        <img src="https://mdbootstrap.com//img/Photos/Square/1.jpg"
+                            class="w-2/3 h-auto rounded-full mx-auto" alt="">
+                    @else
+                        <div class="w-72 h-72 bg-center bg-cover rounded-xl shadow-xl"
+                            style="background-image: url('http://127.0.0.1:8000/{{ $admin->picture }}')">
                         </div>
-                    @enderror
+                    @endif
                 </div>
             </div>
-
         </div>
     </form>
-    <script>
-        function previewImage() {
-            // const image = document.querySelector('#image');
-            // const imgPreview = document.querySelector('.img-preview');
-            const image = document.querySelector('#picture');
-            const preview = document.querySelector('.preview');
-
-            preview.style.display = 'block';
-
-            const oFReader = new FileReader();
-
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onload = function(oFREvent) {
-                preview.src = oFREvent.target.result;
-            }
-        }
-    </script>
 @endsection

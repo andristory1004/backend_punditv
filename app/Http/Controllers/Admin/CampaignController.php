@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Campaign;
+use App\Models\CampaignType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,69 +22,26 @@ class CampaignController extends Controller
         return view('pages.campaign.index', compact('dataCampaign', 'jumlahCampaign'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function campaignView ()
     {
-        //
+        $data = CampaignType::find(1);
+
+        $dataCampaign = $data->campaign()->get();
+
+        $jumlahCampaign = $dataCampaign->count();
+
+        return view('pages.campaign.campaign_view', compact('dataCampaign', 'jumlahCampaign'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function campaignSubscribe ()
     {
-        //
-    }
+        $data = CampaignType::find(2);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $dataCampaign = $data->campaign()->get();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $jumlahCampaign = $dataCampaign->count();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('pages.campaign.campaign_subscribe', compact('dataCampaign', 'jumlahCampaign'));
     }
 }

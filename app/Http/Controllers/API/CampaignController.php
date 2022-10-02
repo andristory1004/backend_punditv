@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use App\Models\Campaign;
+use App\Models\CreditPoint;
 use App\Models\CreditPundi;
 use Illuminate\Http\Request;
 use App\Models\CampaignPriceList;
@@ -41,6 +42,7 @@ class CampaignController extends Controller
             'current_subscribes' => '', 
             'watch_time' => '',
             'number_of_subscribes' => '',
+            'method_payment' => 'required',
             'price' => '',
             'total' => '',
         ]);
@@ -49,18 +51,35 @@ class CampaignController extends Controller
             return response()->json($validator->errors());       
         }
 
-        $price = "";
-                if ($request->campaign_type_id == 1) {
-                    $price = $priceView->price; 
+        // Method Payment
+            $dataPundi = User::find(auth('sanctum')->user()->id);
+            $pundiBallance = $dataPundi->creditPundi()->get();
+
+            $dataPoint = User::find(auth('sanctum')->user()->id);
+            $pointBallance = $dataPoint->creditPoint()->get();
+
+            $methodPayment = "";
+                if ($request->method_payment == 0) {
+                    $methodPayment = $pundiBallance;
                 } else {
-                    $price = $priceSubscribe->price; 
+                    $methodPayment = $pointBallance;
                 }
-        $total = "";
-        if ($request->campaign_type_id == 1) {
-            $total = $price * $request->watch_time; 
-        } else {
-            $total = $price * $request->number_of_subscribes; 
-        }
+        
+        // Price
+            $price = "";
+                    if ($request->campaign_type_id == 1) {
+                        $price = $priceView->price; 
+                    } else {
+                        $price = $priceSubscribe->price; 
+                    }
+
+        // Total
+            $total = "";
+                if ($request->campaign_type_id == 1) {
+                    $total = $price * $request->watch_time; 
+                } else {
+                    $total = $price * $request->number_of_subscribes; 
+                }
             
 
         $data = Campaign::create([
@@ -72,6 +91,7 @@ class CampaignController extends Controller
             'current_subscribes' => $request->current_subscribes ?? 0,
             'watch_time' => $request->watch_time,
             'number_of_subscribes' => $request->number_of_subscribes,
+            'method_payment' => $methodPayment,
             'price' => $price,
             'total' => $total,
          ]);
@@ -82,15 +102,6 @@ class CampaignController extends Controller
                 'data' => $data
             ]
         );
-
-        $dataUser = User::find(auth('sanctum')->user()->id);
-        $creditPundi = $dataUser->creditPundi()->get();
-    
-
-        CreditPundi::update([
-            'user_id' => auth('sanctum')->user()->id,
-            'name' => $creditPundi->name,
-            'ballance' => $creditPundi->ballance - $data->total
-        ]);
+        
     }   
 }
