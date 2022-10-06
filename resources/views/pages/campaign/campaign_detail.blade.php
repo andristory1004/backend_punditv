@@ -60,9 +60,9 @@
                     </div>
 
                     <div class="flex items-center py-2 font-kalam">
-                        <p class="w-72">Price</p>
+                        <p class="w-72">Discount</p>
                         <p class="pr-5">:</p>
-                        <p class="w-full">{{ $dataCampaign->price }}</p>
+                        <p class="w-full">{{ $dataCampaign->discount }}</p>
                     </div>
 
                     <div class="flex items-center py-2 font-kalam">

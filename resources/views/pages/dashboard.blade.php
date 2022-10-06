@@ -3,12 +3,12 @@
 
 @section('main')
 
-    <div class="w--full px-5 grid grid-cols-4 gap-5 mt-5">
+    <div class="w--full px-5 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mt-5">
         <div>
             <a href={{ route('user.index') }}
                 class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
-                <div class="text-white font-acme text-center">
-                    <p class="">
+                <div class="text-white font-acme text-center px-3">
+                    <p class="text-sm md:text-base">
                         Number of users
                     </p>
                     <p class="text-3xl text-blue">
@@ -22,7 +22,7 @@
             <a href={{ route('campaign.index') }}
                 class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
                 <div class="text-white font-acme text-center">
-                    <p class="">
+                    <p class="text-sm md:text-base">
                         Number of Campaign
                     </p>
                     <p class="text-3xl text-blue">
@@ -36,7 +36,7 @@
             <a href=""
                 class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
                 <div class="text-white font-acme text-center">
-                    <p class="">
+                    <p class="text-sm md:text-base">
                         Number of Withdraw
                     </p>
                     <p class="text-3xl text-blue">
@@ -50,7 +50,7 @@
             <a href=""
                 class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
                 <div class="text-white font-acme text-center">
-                    <p class="">
+                    <p class="text-sm md:text-base">
                         Number of top up
                     </p>
                     <p class="text-3xl text-blue">

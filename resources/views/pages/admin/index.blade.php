@@ -21,7 +21,7 @@
             @endif
             <div class="flex mt-5 text-white font-medium font-acme space-x-5 text-xs items-center mb-5">
                 <a href={{ route('admin.create') }}
-                    class="flex space-x-3 px-6 py-2 bg-blue hover:bg-opacity-70 rounded shadow-md hover:shadow-lg transition ease-in-out h-fit text-center w-fit text-white font-normal">
+                    class="flex space-x-3 px-6 py-2 bg-blue hover:bg-opacity-70 rounded shadow-md hover:shadow-lg transition ease-in-out h-fit text-center text-white font-normal ">
                     <i class="fas fa-plus"></i>
                     <span class="font-acme">
                         Add Admin

@@ -176,16 +176,18 @@
             </header>
 
             <!-- Mobile Header & Nav -->
-            <header class="w-full py-5 bg-blue lg:hidden">
+            <header class="w-full py-2 bg-dark-a lg:hidden">
                 <div class="flex items-center justify-between px-6">
                     <a href="index.html"
                         class="hidden text-3xl text-white hover:text-gray-300 font-lobster sm:block">Sistem Pemenangan
                         Pemilu</a>
                     <a href="index.html"
-                        class="text-3xl font-semibold text-white uppercase md:hidden hover:text-gray-300 sm:hidden">SIMPEL</a>
-                    <button id="menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample"
-                        class="text-3xl text-white focus:outline-none">
+                        class="text-3xl font-semibold text-white uppercase md:hidden hover:text-gray-300 sm:hidden">
+                        <img src={{ asset('images/logo_pundi2.png') }} alt="" srcset="" class="w-24">
+                    </a>
+                    <button id="menu-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                        class="text-xl text-white focus:outline-none">
                         <i id="menu-open" class="menu-open fas fa-bars"></i>
                         <i id="menu-close" class="hidden menu-close fas fa-times"></i>
                     </button>
@@ -194,35 +196,68 @@
                 <!-- Dropdown Nav -->
                 <div class="overflow-auto scroll-smooth">
                     <nav class="flex flex-col max-h-screen px-6 pt-4 collapse" id="collapseExample">
-                        <a href=""
+                        <a href="dashboard"
                             class="{{ request()->is('dashboard') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
                             <i class="mr-3 fas fa-tachometer-alt"></i>
                             Dashboard
                         </a>
-                        <a href=""
-                            class="{{ request()->is('tps') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
-                            <i class="mr-3 fas fa-table"></i>
-                            Data TPS
-                        </a>
-                        <a href=""
-                            class="{{ request()->is('paslon') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                        @auth
+                            @if (auth('sanctum')->user()->role_id == 2)
+                                <a href={{ route('admin.index') }}
+                                    class="{{ request()->is('admin') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                                    <i class="mr-3 fas fa-table"></i>
+                                    Admin Data
+                                </a>
+                            @endif
+                        @endauth
+                        <a href={{ route('user.index') }}
+                            class="{{ request()->is('user') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
                             <i class="mr-3 fas fa-user-tie"></i>
-                            Pasangan Calon
+                            User Data
                         </a>
-                        <a href="#"
-                            class="flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                        <a href={{ route('campaign.index') }}
+                            class="{{ request()->is('campaign') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
                             <i class="mr-3 fas fa-user"></i>
+                            Campaign
+                        </a>
+                        @auth
+                            @if (auth('sanctum')->user()->role_id == 2)
+                                <a href={{ route('price.index') }}
+                                    class="{{ request()->is('price') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                                    <i class="mr-3 fas fa-user"></i>
+                                    Price
+                                </a>
+                            @else
+                            @endif
+
+                        @endauth
+
+                        <a href={{ route('advertise.index') }}
+                            class="{{ request()->is('advertise') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                            <i class="mr-3 fas fa-user"></i>
+                            Campaign
+                        </a>
+
+                        <a href={{ route('transaction.index') }}
+                            class="{{ request()->is('transaction') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                            <i class="mr-3 fas fa-user"></i>
+                            Transaction
+                        </a>
+                        <a href={{ route('inbox.index') }}
+                            class="{{ request()->is('inbox') ? 'opacity-100 font-bold' : '' }} flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                            <i class="mr-3 fas fa-user"></i>
+                            Inbox
+                        </a>
+                        <a href=""
+                            class="flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
+                            <i class="mr-3 fas fa-sign-out-alt"></i>
                             Setting
                         </a>
-                        <a href="#"
+                        <a href={{ route('campaign.index') }}
                             class="flex items-center py-2 pl-4 text-white opacity-75 hover:opacity-100 hover:font-bold nav-item">
                             <i class="mr-3 fas fa-sign-out-alt"></i>
                             Sign Out
                         </a>
-                        <button
-                            class="flex items-center justify-center w-full py-2 mt-3 font-semibold bg-white rounded-lg shadow-lg cta-btn hover:shadow-xl hover:bg-gray-300">
-                            <i class="mr-3 fas fa-arrow-circle-up"></i> Upgrade to Pro!
-                        </button>
                     </nav>
                 </div>
             </header>
