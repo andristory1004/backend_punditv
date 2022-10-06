@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\EarnPriceList;
+use App\Http\Controllers\Controller;
 
 class EarnPriceController extends Controller
 {
@@ -14,7 +15,7 @@ class EarnPriceController extends Controller
      */
     public function index()
     {
-        return view('pages.pundi.ern_prices.earn_create');
+        //
     }
 
     /**
@@ -57,7 +58,9 @@ class EarnPriceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = EarnPriceList::find($id);
+
+        return view('pages.price.edit_earn_price', compact('data'));
     }
 
     /**
@@ -69,7 +72,21 @@ class EarnPriceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validasi = $request->validate([
+            'price' => "",
+            'sale' => "",
+            'is_active' => ""
+        ]);
+        
+        EarnPriceList::where('id', $id)->update([
+            'price' => $request->price,
+            'is_active' => $request->is_active,
+            'updated_by' => auth()->user()->id
+        ]);
+
+        return redirect('price')->with([
+            'success' => 'data saved successfully'
+        ]);
     }
 
     /**

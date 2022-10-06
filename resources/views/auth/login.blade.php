@@ -13,15 +13,15 @@
 <body class="bg-dark-a">
     <div class="flex items-center h-screen">
         <div
-            class="flex items-center w-full h-screen md:w-2/3 lg:w-1/3 md:h-582 bg-gradient-to-b from-dark-blue to-black mx-auto px-5 rounded-xl shadow-2xl">
+            class="flex items-center w-full h-screen px-5 mx-auto shadow-2xl md:w-2/3 lg:w-1/3 md:h-582 bg-gradient-to-b from-dark-blue to-black rounded-xl">
             <div class="w-full">
 
                 <img src={{ asset('images/logoPunditv.png') }} alt="Logo Pundi TV" width="100" class="mx-auto ">
-                <p class="text-lg font-acme text-white text-center">LogIn to Dashboard Pundi TV</p>
-                <p class="text-sm text-gray-500 font-acme mb-5 text-center">Enter your email and passord below</p>
+                <p class="text-lg text-center text-white font-acme">LogIn to Dashboard Pundi TV</p>
+                <p class="mb-5 text-sm text-center text-gray-500 font-acme">Enter your email and passord below</p>
 
                 @if (session()->has('loginError'))
-                    <div class="bg-red-100 rounded-lg text-red py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full alert alert-dismissible"
+                    <div class="inline-flex items-center w-full px-6 py-5 mb-3 text-base text-red-700 bg-red-100 rounded-lg text-red alert alert-dismissible"
                         role="alert">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle"
                             class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -38,24 +38,24 @@
                 <form action={{ route('authenticate') }} method="POST">
                     @csrf
                     <div class="mb-6 form-group ">
-                        <label for="email" class="form-label mb-2 text-white font-acme flex text-left">Email</label>
+                        <label for="email" class="flex mb-2 text-left text-white form-label font-acme">Email</label>
                         <input type="email"
                             class="form-control block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme "
-                            id="email" name="email" placeholder="Input Price" />
+                            id="email" name="email" placeholder="Enter email" />
                         @error('email')
-                            <div class="text-red text-sm flex text-left mt-2">
+                            <div class="flex mt-2 text-sm text-left text-red">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
                     <div class="mb-6 form-group">
                         <label for="password"
-                            class="form-label mb-2 text-white font-acme flex text-left">Password</label>
+                            class="flex mb-2 text-left text-white form-label font-acme">Password</label>
                         <input type="password"
                             class="form-control block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme "
                             id="password" name="password" placeholder="Enter Password" />
                         @error('password')
-                            <div class="text-red text-sm flex text-left mt-2">
+                            <div class="flex mt-2 text-sm text-left text-red">
                                 {{ $message }}
                             </div>
                         @enderror
@@ -64,21 +64,13 @@
                         <!-- Remember Me -->
                         <div class="block mt-4">
                             <label for="remember_me" class="inline-flex items-center">
-                                <input id="remember_me" type="checkbox" class="rounded text-blue shadow-sm"
+                                <input id="remember_me" type="checkbox" class="rounded shadow-sm text-blue"
                                     name="remember">
                                 <span class="ml-2 text-sm text-white font-acme">{{ __('Remember me') }}</span>
                             </label>
                         </div>
-                        {{-- <div class="form-group form-check">
-                            <input type="checkbox"
-                                class="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
-                                id="checkBox">
-                            <label class="inline-block text-white form-check-label font-acme" for="checkBox">
-                                Remind Me
-                            </label>
-                        </div> --}}
                         <a href="#!"
-                            class="font-acme text-blue-600 transition duration-200 ease-in-out hover:text-blue-700 focus:text-blue-700">
+                            class="text-blue-600 transition duration-200 ease-in-out font-acme hover:text-blue-700 focus:text-blue-700">
                             Lupa Password..?
                         </a>
                     </div>
@@ -87,9 +79,9 @@
                         Masuk
                     </button>
                 </form>
-                <div class="flex items-center space-x-3 font-acme text-white justify-center mt-5">
+                <div class="flex items-center justify-center mt-5 space-x-3 text-white font-acme">
                     <p>dont have an account..?</p>
-                    <a href="" class="text-blue hover:text-opacity-70 transition ease-in-out">Register Now</a>
+                    <a href="" class="transition ease-in-out text-blue hover:text-opacity-70">Register Now</a>
                 </div>
             </div>
         </div>

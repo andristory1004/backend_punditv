@@ -28,7 +28,7 @@ class CampaignPriceList extends Model
             return $this->belongsTo(PriceType::class,);
         }
 
-        public function createdBy()
+        public function user()
         {
             return $this->belongsTo(User::class, 'created_by');
         }

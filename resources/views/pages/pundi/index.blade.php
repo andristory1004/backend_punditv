@@ -5,7 +5,8 @@
     {{-- Campaign Price List --}}
     <div class="px-5 py-3 pb-12 bg-dark mx-5 my-5 overflow-auto rounded-t-3xl bg-dark-a">
         <div class="flex justify-between items-cente">
-            <a href={{ route('add/campaign/price') }}
+            {{-- <a href={{ route('add/campaign/price') }} --}}
+            <a href=""
                 class="flex space-x-3 px-6 py-2 bg-blue text-white rounded-full shadow-md hover:bg-opacity-70 hover:shadow-lg items-center transition duration-150 ease-in-out mt-5 font-acme text-center pointer-events-none">
                 <i class="fas fa-plus"></i>
                 <span class="font-acme">
@@ -67,7 +68,7 @@
                             {{ $item->updated_at }}
                         </td>
                         <td class="border-b border-r text-black border-black">
-                            <a href={{ route('edit/campaign/price', $item->id) }}>
+                            <a href={{ route('campaign-price', $item->id) }}>
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
@@ -78,9 +79,10 @@
     </div>
 
     {{-- Earn Price List --}}
-    <div class="px-5 py-3 pb-12 bg-dark mx-5 my-5 overflow-auto rounded-t-3xl bg-dark-a">
+    {{-- <div class="px-5 py-3 pb-12 bg-dark mx-5 my-5 overflow-auto rounded-t-3xl bg-dark-a">
         <div class="flex justify-between items-center">
-            <a href={{ route('add/earn/price') }}
+            
+            <a href=""
                 class="flex space-x-3 px-6 py-2 bg-blue text-white rounded-full shadow-md hover:bg-opacity-70 hover:shadow-lg items-center transition duration-150 ease-in-out mt-5 font-acme text-center pointer-events-none ">
                 <i class="fas fa-plus"></i>
                 <span class="font-acme">
@@ -136,7 +138,6 @@
                             @else
                                 Inactive
                             @endif
-                            {{-- {{ $earnPrice->is_active }} --}}
                         </td>
                         <td class="border-b border-r px-2 text-black border-black">
                             {{ $earnPrice->createdBy->name ?? $item->created_by }}
@@ -161,5 +162,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div> --}}
 @endsection

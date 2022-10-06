@@ -18,9 +18,13 @@ class UserController extends Controller
     {
         $role = Role::first();
         $data = $role->user()->get();
-
-        // return $data;
+        
         return view('pages.user.index', compact('data'));
+
+        // $dataUser = User::find(auth()->user()->id);
+        // $creditPundi = $dataUser->creditPundi()->get('id');
+
+        // return $creditPundi;
     }
 
     /**

@@ -72,7 +72,7 @@
                         User Data
                     </span>
                 </a>
-                <a href={{ route('campaign') }}
+                <a href={{ route('campaign.index') }}
                     class="{{ request()->is('campaign') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
                     <img src={{ asset('icons/icon_campaign.png') }} alt="Icon Advertise" width="25px">
                     <span class="font-bold text-white">
@@ -81,7 +81,7 @@
                 </a>
                 @auth
                     @if (auth('sanctum')->user()->role_id == 2)
-                        <a href={{ route('price-list') }}
+                        <a href={{ route('price.index') }}
                             class="{{ request()->is('price-list', 'campaign-price', 'campaign-price/create') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
                             <img src={{ asset('icons/icon_pundi.png') }} alt="Icon Advertise" width="25px">
                             <span class="font-bold text-white">
@@ -133,7 +133,7 @@
                                 type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="relative px-1 py-1 rounded-full group-hover:bg-blue group-active:bg-blue">
                                     @if (auth('sanctum')->user()->picture == null)
-                                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-full w-10"
+                                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="w-10 rounded-full"
                                             alt="Avatar" />
                                     @else
                                         <div class="w-10 h-10 bg-center bg-cover rounded-full"
@@ -142,7 +142,7 @@
                                     @endif
                                 </div>
                                 <div
-                                    class="flex items-center pl-5 py-2 -ml-3 space-x-3 rounded-r-full group-hover:bg-blue pr-3 group-active:bg-blue">
+                                    class="flex items-center py-2 pl-5 pr-3 -ml-3 space-x-3 rounded-r-full group-hover:bg-blue group-active:bg-blue">
                                     <p class="font-acme">
                                         {{ auth('sanctum')->user()->name }}
                                     </p>
@@ -153,7 +153,7 @@
                                 aria-labelledby="dropdownMenuButton1">
                                 <li>
                                     <a href="#"
-                                        class="block w-full px-4 py-2 text-sm font-bold dropdown-item whitespace-nowrap hover:bg-gray-100 hover:text-black text-white">
+                                        class="block w-full px-4 py-2 text-sm font-bold text-white dropdown-item whitespace-nowrap hover:bg-gray-100 hover:text-black">
                                         Account
                                     </a>
                                 </li>

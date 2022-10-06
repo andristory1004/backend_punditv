@@ -2,18 +2,18 @@
 
 @section('title', 'Campaign View')
 @section('main')
-    <div class="py-3 pb-12 rounded-t-3xl px-10 w-full">
-        <div class="flex items-center text-white space-x-3 font acme">
+    <div class="w-full px-10 py-3 pb-12 rounded-t-3xl">
+        <div class="flex items-center space-x-3 text-white font acme">
             <p class="text-base">Campaign Amount = </p>
-            <p class="text-xl flex items-center space-x-3 font-acme">
+            <p class="flex items-center space-x-3 text-xl font-acme">
                 <span>{{ $jumlahCampaign }}</span>
                 <span class="tracking-wide">Campaign</span>
             </p>
         </div>
-        <div class="flex mt-5 text-white font-medium font-acme space-x-5 text-xs items-center mb-5">
+        <div class="flex items-center mt-5 mb-5 space-x-5 text-xs font-medium text-white font-acme">
 
             {{-- Button --}}
-            <a href={{ route('campaign') }}
+            <a href={{ route('campaign.index') }}
                 class="flex space-x-3 px-6 py-2.5 bg-blue hover:bg-opacity-70 uppercase rounded shadow-md hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out h-fit text-center w-fit items-center">
                 <i class="fas fa-eye"></i>
                 <span class="font-acme">
@@ -37,12 +37,12 @@
             {{-- End Button --}}
 
             <div class=" xl:w-96">
-                <div class="input-group relative flex flex-wrap items-stretch w-full">
+                <div class="relative flex flex-wrap items-stretch w-full input-group">
                     <input type="search"
                         class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
                     <div
-                        class=" bg-blue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-opacity-70 hover:shadow-lg transition duration-150 ease-in-out flex items-center"">
+                        class="flex items-center text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out rounded shadow-md bg-blue hover:bg-opacity-70 hover:shadow-lg"">
                         <button type="button" id="button-addon2" class="px-6 py-2.5">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4"
                                 role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -55,10 +55,10 @@
                 </div>
             </div>
         </div>
-        <table class="text-center w-screen bg-dark">
+        <table class="w-screen text-center bg-dark">
             <thead class="">
                 <tr class="border bg-dark-a">
-                    <th scope="col" class="px-2 py-2 text-sm font-medium border-r text-white rounded-tl-3xl ">
+                    <th scope="col" class="px-2 py-2 text-sm font-medium text-white border-r rounded-tl-3xl ">
                         Action
                     </th>
                     <th scope="col" class="px-2 py-2 text-sm font-medium text-white border-r border-white ">
@@ -98,16 +98,16 @@
                 $no = 1;
                 ?>
                 @foreach ($dataCampaign as $item)
-                    <tr class="text-white hover:bg-slate-300 hover:text-black border">
-                        <td class=" text-sm border-b border-r hover:bg-green-500 group">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <tr class="text-white border hover:bg-slate-300 hover:text-black">
+                        <td class="text-sm border-b border-r hover:bg-green-500 group">
+                            <a href={{route('campaign.show', $item->id)}}>
                                 <div class="w-full h-full px-2 py-2">
                                     <i class="fas fa-eye group-hover:scale-125"></i>
                                 </div>
-                            </button>
+                            </a>
                         </td>
                         <td class="px-2 py-2 text-sm border-b border-r ">{{ $no++ }}</td>
-                        <td class="px-2 py-2 text-sm border-b border-r  text-left">
+                        <td class="px-2 py-2 text-sm text-left border-b border-r">
                             {{ $item->user->name }}
                         </td>
                         <td class="px-2 py-2 text-sm border-b border-r ">

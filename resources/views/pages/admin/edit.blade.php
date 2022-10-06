@@ -19,21 +19,17 @@
             </div>
             <div class="flex justify-center">
                 <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
+                    <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Name</label>
                     <div
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme ">
                         {{ $admin->name }}
                     </div>
 
                     <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Email</label>
-                    <input type="email"
-                        class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme"
-                        id="email" name="email" placeholder="Enter email" value={{ $admin->email }} />
-                    @error('email')
-                        <div class="text-red ">
-                            {{ $message }}
-                        </div>
-                    @enderror
-
+                    <div
+                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme ">
+                        {{ $admin->email }}
+                    </div>
                     <div>
                         <label for="form-check" class="form-label inline-block mb-2 text-white font-acme mt-3">
                             Status
@@ -73,7 +69,6 @@
                             @endif
                         </div>
                     </div>
-
                 </div>
                 <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
                     <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Picture</label>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\EarnPriceList;
 use App\Models\CampaignPriceList;
 use App\Http\Controllers\Controller;
 
@@ -16,10 +15,7 @@ class CampaignPriceController extends Controller
      */
     public function index()
     {
-        $campaignPrice = CampaignPriceList::all();
-        $earnPrice = EarnPriceList::all();
-
-        return view('pages.pundi.campaign_prices.campaign_create', compact('campaignPrice', 'earnPrice'));
+        //
     }
 
     /**
@@ -62,7 +58,9 @@ class CampaignPriceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = CampaignPriceList::find($id);
+
+        return view('pages.price.edit_campaign_price', compact('data'));
     }
 
     /**
@@ -74,7 +72,22 @@ class CampaignPriceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validasi = $request->validate([
+            'price' => "",
+            'sale' => "",
+            'is_active' => ""
+        ]);
+        
+        CampaignPriceList::where('id', $id)->update([
+            'price' => $request->price,
+            'sale' => $request->sale,
+            'is_active' => $request->is_active,
+            'updated_by' => auth()->user()->id
+        ]);
+
+        return redirect('price')->with([
+            'success' => 'data saved successfully'
+        ]);
     }
 
     /**

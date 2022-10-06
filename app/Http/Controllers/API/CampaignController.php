@@ -8,6 +8,7 @@ use App\Models\CreditPoint;
 use App\Models\CreditPundi;
 use Illuminate\Http\Request;
 use App\Models\CampaignPriceList;
+use Illuminate\Support\Facades\DB;
 use App\Models\BallanceTransaction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -28,9 +29,9 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function store (Request $request)
+    public function store (Request $request, CreditPundi $id)
     {
-
+       DB::beginTransaction();
         $priceView = CampaignPriceList::first();
         $priceSubscribe = CampaignPriceList::find(2);
 
@@ -51,18 +52,12 @@ class CampaignController extends Controller
             return response()->json($validator->errors());       
         }
 
-        // Method Payment
-            $dataPundi = User::find(auth('sanctum')->user()->id);
-            $pundiBallance = $dataPundi->creditPundi()->get();
-
-            $dataPoint = User::find(auth('sanctum')->user()->id);
-            $pointBallance = $dataPoint->creditPoint()->get();
-
+            // Method Payment
             $methodPayment = "";
                 if ($request->method_payment == 0) {
-                    $methodPayment = $pundiBallance;
+                    $methodPayment = "Credit Pundi";
                 } else {
-                    $methodPayment = $pointBallance;
+                    $methodPayment = "Credit Point";
                 }
         
         // Price
@@ -95,13 +90,50 @@ class CampaignController extends Controller
             'price' => $price,
             'total' => $total,
          ]);
-         
+
+
+         //  update credit Pundi
+         $dataUser = User::find(auth('sanctum')->user()->id);
+
+            if ($data->method_payment == "Credit Pundi") {
+                $idCreditPundi = $dataUser->creditPundi()->get();
+
+                foreach ($idCreditPundi as $item ) 
+                {
+                    $id = $item->id;
+                    $ballance = $item->ballance;
+
+                }
+                
+                $dataTransaction = $ballance - $data->total;
+
+                CreditPundi::where('id', $id)->update([
+                    'ballance' => $dataTransaction
+                ]);
+            } else {
+                $idCreditPoint = $dataUser->creditPoint()->get();
+
+                foreach ($idCreditPoint as $item ) 
+                {
+                    $id = $item->id;
+                    $ballance = $item->ballance;
+
+                }
+                
+                $dataTransaction = $ballance - $data->total;
+
+                CreditPoint::where('id', $id)->update([
+                    'ballance' => $dataTransaction
+                ]);
+            }
+            
+        DB::commit();
+
         return response()->json(
             [
                 'message' => " Data success saved..!",
                 'data' => $data
             ]
         );
-        
     }   
 }

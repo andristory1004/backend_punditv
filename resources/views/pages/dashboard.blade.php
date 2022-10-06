@@ -19,7 +19,7 @@
         </div>
 
         <div>
-            <a href={{ route('campaign') }}
+            <a href={{ route('campaign.index') }}
                 class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
                 <div class="text-white font-acme text-center">
                     <p class="">

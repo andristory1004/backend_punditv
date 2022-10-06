@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -19,8 +20,6 @@ class AdminController extends Controller
         $dataTotal = $role->count();
 
         return view('pages.admin.index', compact('data', 'dataTotal'));
-
-        // return $dataTotal;
     }
 
     /**
@@ -104,27 +103,14 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $message = [
-            'required' => 'data must be filled..!',
-        ];
-
         $validasi = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'picture' => 'required',
-            'password' => 'required',
-        ], $message);
-
-        $validasi['password'] = bcrypt($validasi['password']);
-        $validasi['is_active'] = $validasi['is_active'] ?? 0;
-        $validasi['role_id' ] = 2;
-        $validasi['created_by'] = auth('sanctum')->user()->name;
+            'is_active' => ""
+        ]);
         
-        $fileName = time().$request->file('picture')->getClientOriginalName();
-        $path = $request->file('picture')->storeAs('uploads/admins',$fileName);
-        $validasi['picture'] = $path;
-
-        User::create($validasi);
+        DB::table('users')->where('id', $id)->update([
+            'is_active' => $request->is_active,
+            'updated_by' => auth()->user()->name
+        ]);
 
         return redirect('admin')->with([
             'success' => 'data saved successfully'

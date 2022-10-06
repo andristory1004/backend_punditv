@@ -9,17 +9,21 @@ use App\Http\Controllers\Controller;
 
 class CampaignController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         $dataCampaign = Campaign::all();
         $jumlahCampaign = Campaign::count();
 
         return view('pages.campaign.index', compact('dataCampaign', 'jumlahCampaign'));
+    }
+
+    
+    public function show($id)
+    {
+        $dataCampaign = Campaign::find($id);
+
+        return view('pages.campaign.campaign_detail', compact('dataCampaign'));
     }
 
     public function campaignView ()
