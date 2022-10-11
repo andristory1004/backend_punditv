@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\API;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\CampaignPriceList;
+use App\Models\SubscribeProgress;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
-class CampaignPriceController extends Controller
+class SubscribeProgressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +17,14 @@ class CampaignPriceController extends Controller
      */
     public function index()
     {
-        $data = CampaignPriceList::all();
-
-        return view('pages.price.campaign.index', compact('data'));
+        $id = auth('sanctum')->user()->id;
+        $dataCampaign = User::find($id);
+        $data = $dataCampaign->subscribeProgress()->get();
+        
+        return response()->json([
+            'message' => 'Success',
+            'data' => $data
+        ]);
     }
 
     /**
@@ -60,10 +67,7 @@ class CampaignPriceController extends Controller
      */
     public function edit($id)
     {
-        $data = CampaignPriceList::find($id);
-
-        // return view('pages.price.edit', compact('data'));
-        return view('pages.price.edit_campaign_price', compact('data'));
+        //
     }
 
     /**
@@ -75,21 +79,26 @@ class CampaignPriceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validasi = $request->validate([
-            'price' => "",
-            'sale' => "",
-            'is_active' => ""
-        ]);
-        
-        CampaignPriceList::where('id', $id)->update([
-            'price' => $request->price,
-            'sale' => $request->sale,
-            'is_active' => $request->is_active,
-            'updated_by' => auth()->user()->id
+        $validator = Validator::make($request->all(),[
+            'progress' => ""
         ]);
 
-        return redirect('price')->with([
-            'success' => 'data saved successfully'
+        if($validator->fails()){
+            return response()->json($validator->errors());       
+        }
+     
+        $update = SubscribeProgress::where('id', $id)->update([
+            'progress' => $request->progress
+        ]);
+
+        $idUser = auth('sanctum')->user()->id;
+        $dataProgress = User::find($idUser);
+        $data = $dataProgress->subscribeProgress()->get();
+
+        return response()->json([
+            'Message' => "Success",
+            'Id' => $idUser,
+            'Data'  => $data
         ]);
     }
 

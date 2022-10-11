@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('accumulated_subscribes', function (Blueprint $table) {
+        Schema::create('view_progress', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('progress');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accumulated_subscribes');
+        Schema::dropIfExists('view_progress');
     }
 };

@@ -37,7 +37,7 @@
 
 <body class="bg-dark-blue">
     <div class="flex">
-        <aside class="relative hidden h-screen overflow-auto lg:block bg-dark-a w-60">
+        <aside class="relative hidden overflow-visible lg:block bg-dark-a w-60">
 
             <div class="flex justify-center px-6 pt-6 pb-2 text-center">
                 <img src={{ asset('images/logoPunditv.png') }} width="75" alt="Logo Pundi TV">
@@ -82,12 +82,33 @@
                 @auth
                     @if (auth('sanctum')->user()->role_id == 2)
                         <a href={{ route('price.index') }}
-                            class="{{ request()->is('price-list', 'campaign-price', 'campaign-price/create') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                            class="{{ request()->is('price') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
                             <img src={{ asset('icons/icon_pundi.png') }} alt="Icon Advertise" width="25px">
                             <span class="font-bold text-white">
                                 Price
                             </span>
                         </a>
+                        {{-- <p class="md:space-x-1 space-y-1 md:space-y-0">
+                            <a href="#collapseExample" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                class="{{ request()->is('campaign-price', 'earn-price') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                                <img src={{ asset('icons/icon_pundi.png') }} alt="Icon Advertise" width="25px">
+                                <span class="font-bold text-white">
+                                    Price
+                                </span>
+                                <i class="fas fa-caret-down"></i>
+                            </a>
+                        </p>
+                        <div class="ml-5 collapse" id="collapseExample">
+                            <a href={{ route('campaign-price.index') }}
+                                class="{{ request()->is('campaign-price', 'campaign-price/create') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                                Campaign Price
+                            </a>
+                            <a href=""
+                                class="{{ request()->is('price-list', 'campaign-price', 'campaign-price/create') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                                Earn Price
+                            </a>
+                        </div> --}}
                     @else
                     @endif
 

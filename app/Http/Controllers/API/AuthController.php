@@ -8,7 +8,9 @@ use App\Models\Referral;
 use App\Models\CreditPoint;
 use App\Models\CreditPundi;
 use Illuminate\Support\Str;
+use App\Models\ViewProgress;
 use Illuminate\Http\Request;
+use App\Models\SubscribeProgress;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,25 +28,26 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(),[
             'name'      => 'required|string|max:255',
             'email'     => 'required|string|email|max:255|unique:users',
-            'password'  => 'required|string|min:8'
+            'password'  => 'required|string|min:8',
+            // 'picture'   => 'file'
         ]);
 
         if($validator->fails()){
             return response()->json($validator->errors());       
         }
 
-        $picture = $request->file('picture');
+        // $picture = $request->file('picture');
 
-        if ($picture) {
-            $fileName = time().'_'.$picture->getClientOriginalName();
-            $filePath = $picture->storeAs('uploads/users', $fileName, 'public');
-        }
+        // if ($picture) {
+        //     $fileName = time().'_'.$picture->getClientOriginalName();
+        //     $filePath = $picture->storeAs('uploads/users', $fileName, 'public');
+        // }
 
         $user = User::create([
             'name'          => $request->name,
             'email'         => $request->email,
             'password'      => Hash::make($request->password),
-            'picture'       => $filePath,
+            // 'picture'       => $filePath,
             'ref_id'        => $referral->id,
             'role_id'       => $request->role ?? 1
 
@@ -65,13 +68,26 @@ class AuthController extends Controller
             'ballance'  => 0,
         ]);
 
+        ViewProgress::create([
+            'user_id'   => $user_id,
+            'name'      => "View Progress",
+            'progress' => 0
+        ]);
+
+        SubscribeProgress::create([
+            'user_id'   => $user_id,
+            'name'      => "Subscribe Progress",
+            'progress' => 0
+        ]);
+
+
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
             ->json(['data' => $user,'access_token' => $token, 'token_type' => 'Bearer', ]);
     }
 
-    
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password')))
@@ -109,9 +125,17 @@ class AuthController extends Controller
             return response()->json($validator->errors());       
         }
 
+        $picture = $request->file('picture');
+
+        if ($picture) {
+            $fileName = time().'_'.$picture->getClientOriginalName();
+            $filePath = $picture->storeAs('uploads/users', $fileName, 'public');
+        }
+
         $user->update([
             'name'          => $request->name,
             'email'         => $request->email,
+            'picture'       => $filePath,
             'password'      => $request->password ? Hash::make($request->password) : $user->password
          ]);
 

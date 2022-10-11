@@ -8,7 +8,9 @@ use App\Models\Campaign;
 use App\Models\Referral;
 use App\Models\CreditPoint;
 use App\Models\CreditPundi;
+use App\Models\ViewProgress;
 use App\Models\CampaignPriceList;
+use App\Models\SubscribeProgress;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -77,6 +79,17 @@ class User extends Authenticatable
             return $this->hasMany(CreditPoint::class, 'user_id');
         }
 
+        
+        public function viewProgress()
+        {
+            return $this->hasMany(ViewProgress::class, 'user_id');
+        }
+
+        public function subscribeProgress()
+        {
+            return $this->hasMany(SubscribeProgress::class, 'user_id');
+        }
+
 
     // Invers Relatioship
     
@@ -89,4 +102,5 @@ class User extends Authenticatable
         {
             return $this->belongsTo(Referral::class, 'ref_id');
         }
+
 }

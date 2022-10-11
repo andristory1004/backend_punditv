@@ -29,6 +29,15 @@ class CampaignController extends Controller
         ]);
     }
 
+    public function campaign () {
+        $data = Campaign::all();
+
+        return response()->json([
+            'message' => 'Success',
+            'data' => $data
+        ]);
+    }
+
     public function store (Request $request, CreditPundi $id)
     {
        DB::beginTransaction();

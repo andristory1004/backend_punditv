@@ -6,6 +6,9 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BallanceController;
 use App\Http\Controllers\API\CampaignController;
 use App\Http\Controllers\API\PriceListController;
+use App\Http\Controllers\API\MaxProgressController;
+use App\Http\Controllers\API\ViewProgressController;
+use App\Http\Controllers\API\SubscribeProgressController;
 use App\Http\Controllers\API\BallanceTransactionController;
 
 /*
@@ -29,21 +32,32 @@ Route::controller(AuthController::class)->group(function () {
     
     Route::middleware('auth:sanctum')->group(function () {
 
-        Route::prefix('/profile')->group(function () {
-            Route::get('/', 'profile');
-            Route::post('/', 'update');
-        });
+        Route::get('/profile', 'profile');
+        Route::post('/profile/update', 'update');
+        // Route::prefix('/profile')->group(function () {
+        //     Route::get('/', 'profile');
+        //     Route::post('/', 'update');
+        // });
 
         Route::post('/logout', 'logout');
     });
 
 });
 
+
+
 Route::controller(CampaignController::class)->group(function () {
+    Route::get('public/campaign', 'campaign');
     Route::middleware('auth:sanctum')->group(function (){
         Route::get('campaign', 'index');
         Route::post('campaign.store', 'store');
     });
+});
+
+Route::get('max-progress', [MaxProgressController::class, 'index']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('progress/view', ViewProgressController::class);
+    Route::resource('progress/subscribe', SubscribeProgressController::class);
 });
 
 Route::controller(PriceListController::class)->group(function () {
