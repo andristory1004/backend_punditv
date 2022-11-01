@@ -5,7 +5,7 @@
         @method('PUT')
         @csrf
         <div class="w-full">
-            <div class="flex justify-start space-x-4 px-5">
+            <div class="hidden md:flex justify-start space-x-4 px-5">
                 <a href={{ route('admin.index') }}
                     class="px-6 py-2.5 bg-red text-white text-xs rounded shadow-md hover:bg-opacity-70 hover:shadow-lg transition duration-150 ease-in-out mt-5 font-acme w-28 text-center">
                     Cancel
@@ -17,8 +17,18 @@
                     </p>
                 </button>
             </div>
-            <div class="flex justify-center">
-                <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
+            <div class="md:flex justify-center">
+                <div class="md:hidden mb-3 bg-dark-blue px-5 py-5 rounded-lg ">
+                    @if ($admin->picture == null)
+                        <img src="https://mdbootstrap.com//img/Photos/Square/1.jpg" class="w-2/3 h-auto rounded-full mx-auto"
+                            alt="">
+                    @else
+                        <div class="w-56 h-56 bg-center bg-cover rounded-xl shadow-xl mx-auto"
+                            style="background-image: url('http://127.0.0.1:8000/{{ $admin->picture }}') ">
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg md:w-1/2 ">
                     <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Name</label>
                     <div
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme ">
@@ -70,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
+                <div class="hidden md:block mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
                     <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Picture</label>
                     @if ($admin->picture == null)
                         <img src="https://mdbootstrap.com//img/Photos/Square/1.jpg"
@@ -82,6 +92,20 @@
                     @endif
                 </div>
             </div>
+            <div class="flex md:hidden justify-end space-x-4 px-5 pb-20">
+                <a href={{ route('admin.index') }}
+                    class=" py-2.5 bg-red text-white text-xs rounded shadow-md hover:bg-opacity-70 ease-in-out font-acme w-28 text-center">
+                    Cancel
+                </a>
+                <button type="submit">
+                    <p
+                        class=" py-2.5 bg-blue text-white text-xs rounded shadow-md hover:bg-opacity-70
+                        hover:shadow-lg transition duration-150 ease-in-out font-acme w-28 text-center">
+                        Save
+                    </p>
+                </button>
+            </div>
         </div>
     </form>
+
 @endsection

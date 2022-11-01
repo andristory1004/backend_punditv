@@ -28,9 +28,15 @@ class CampaignController extends Controller
             'data' => $data
         ]);
     }
+    public function showCampaign($id) {
+        $data = Campaign::find($id);
+
+        return response($data);
+    }
 
     public function campaign () {
         $data = Campaign::all();
+        // $data = Campaign::inRandomOrder();
 
         return response()->json([
             'message' => 'Success',

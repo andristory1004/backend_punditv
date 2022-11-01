@@ -7,7 +7,7 @@
             @csrf
 
             <div class="flex items-center py-2 font-kalam">
-                <p class="w-72">Type</p>
+                <p class="w-24 md:w-72">Type</p>
                 <p class="pr-5">:</p>
                 <p
                     class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme">
@@ -16,7 +16,7 @@
             </div>
 
             <div class="flex items-center py-2 font-kalam">
-                <p class="w-72">Price</p>
+                <p class="w-24 md:w-72">Price</p>
                 <p class="pr-5">:</p>
 
                 <input type="number" name="price"
@@ -25,7 +25,7 @@
             </div>
 
             <div class="flex items-center py-2 font-kalam">
-                <p class="w-72">Discount</p>
+                <p class="w-24 md:w-72">Discount</p>
                 <p class="pr-5">:</p>
 
                 <input type="number" name="sale"
@@ -34,7 +34,7 @@
             </div>
 
             <div class="flex py-2 font-kalam">
-                <p class="w-56">status</p>
+                <p class="w-16 md:w-56">status</p>
                 <p class="pr-5">:</p>
 
                 @if ($data->is_active == 1)

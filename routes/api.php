@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BallanceController;
 use App\Http\Controllers\API\CampaignController;
 use App\Http\Controllers\API\PriceListController;
+use App\Http\Controllers\API\CategoriesController;
 use App\Http\Controllers\API\MaxProgressController;
 use App\Http\Controllers\API\ViewProgressController;
 use App\Http\Controllers\API\SubscribeProgressController;
@@ -44,10 +45,11 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-
+Route::get('categories', [CategoriesController::class, 'index']);
 
 Route::controller(CampaignController::class)->group(function () {
     Route::get('public/campaign', 'campaign');
+    Route::get('public/campaign/{id}', 'showCampaign');
     Route::middleware('auth:sanctum')->group(function (){
         Route::get('campaign', 'index');
         Route::post('campaign.store', 'store');

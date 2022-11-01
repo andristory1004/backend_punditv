@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\InboxController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\PundiController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\AdvertiseController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -59,6 +60,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('earn-price', EarnPriceController::class);
 
     Route::resource('transaction', TransactionController::class);
+
+    Route::resource('banner', BannerController::class);
 
     Route::resource('inbox', InboxController::class);
 });

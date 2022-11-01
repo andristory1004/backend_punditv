@@ -42,7 +42,7 @@ class CampaignController extends Controller
     {
         $data = CampaignType::find(2);
 
-        $dataCampaign = $data->campaign()->get();
+        $dataCampaign = $data->campaign()->inRandomOrder();
 
         $jumlahCampaign = $dataCampaign->count();
 

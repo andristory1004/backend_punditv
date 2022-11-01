@@ -5,75 +5,141 @@
 
     <div class="w--full px-5 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mt-5">
         <div>
-            <a href={{ route('user.index') }}
-                class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
-                <div class="text-white font-acme text-center px-3">
-                    <p class="text-sm md:text-base">
-                        Number of users
-                    </p>
-                    <p class="text-3xl text-blue">
-                        {{ $dataUser }}
-                    </p>
-                </div>
-            </a>
+            @auth
+                @if (auth('sanctum')->user()->role_id == 2)
+                    <a href={{ route('user.index') }}
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center px-3">
+                            <p class="text-sm md:text-base">
+                                Number of users
+                            </p>
+                            <p class="text-3xl text-blue">
+                                {{ $dataUser }}
+                            </p>
+                        </div>
+                    </a>
+                @else
+                    <div
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center px-3">
+                            <p class="text-sm md:text-base">
+                                Number of users
+                            </p>
+                            <p class="text-3xl text-blue">
+                                {{ $dataUser }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
+            @endauth
+
         </div>
 
         <div>
-            <a href={{ route('campaign.index') }}
-                class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
-                <div class="text-white font-acme text-center">
-                    <p class="text-sm md:text-base">
-                        Number of Campaign
-                    </p>
-                    <p class="text-3xl text-blue">
-                        {{ $dataCampaign }}
-                    </p>
-                </div>
-            </a>
+            @auth
+                @if (auth('sanctum')->user()->role_id == 2)
+                    <a href={{ route('campaign.index') }}
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center">
+                            <p class="text-sm md:text-base">
+                                Number of Campaign
+                            </p>
+                            <p class="text-3xl text-blue">
+                                {{ $dataCampaign }}
+                            </p>
+                        </div>
+                    </a>
+                @else
+                    <div
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center">
+                            <p class="text-sm md:text-base">
+                                Number of Campaign
+                            </p>
+                            <p class="text-3xl text-blue">
+                                {{ $dataCampaign }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
+            @endauth
         </div>
 
         <div>
-            <a href=""
-                class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
-                <div class="text-white font-acme text-center">
-                    <p class="text-sm md:text-base">
-                        Number of Withdraw
-                    </p>
-                    <p class="text-3xl text-blue">
-                        200
-                    </p>
-                </div>
-            </a>
+            @auth
+                @if (auth('sanctum')->user()->role_id == 2)
+                    <a href=""
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center">
+                            <p class="text-sm md:text-base">
+                                Number of Withdraw
+                            </p>
+                            <p class="text-3xl text-blue">
+                                200
+                            </p>
+                        </div>
+                    </a>
+                @else
+                    <div
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center">
+                            <p class="text-sm md:text-base">
+                                Number of Withdraw
+                            </p>
+                            <p class="text-3xl text-blue">
+                                200
+                            </p>
+                        </div>
+                    </div>
+                @endif
+            @endauth
         </div>
 
         <div>
-            <a href=""
-                class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
-                <div class="text-white font-acme text-center">
-                    <p class="text-sm md:text-base">
-                        Number of top up
-                    </p>
-                    <p class="text-3xl text-blue">
-                        200
-                    </p>
-                </div>
-            </a>
+            @auth
+                @if (auth('sanctum')->user()->role_id == 2)
+                    <a href=""
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center">
+                            <p class="text-sm md:text-base">
+                                Number of top up
+                            </p>
+                            <p class="text-3xl text-blue">
+                                200
+                            </p>
+                        </div>
+                    </a>
+                @else
+                    <div
+                        class="w-full h-24 bg-dark-a text-white rounded-2xl transition hover:scale-105 flex items-center justify-center hover:no-underline">
+                        <div class="text-white font-acme text-center">
+                            <p class="text-sm md:text-base">
+                                Number of top up
+                            </p>
+                            <p class="text-3xl text-blue">
+                                200
+                            </p>
+                        </div>
+                    </div>
+                @endif
+            @endauth
         </div>
     </div>
 
-    <div class="w-full px-11 py-5">
+    <div class="w-full md:w-full px-5 lg:px-11 py-5 overflow-auto">
         {{-- Graphics --}}
-        <div class="flex w-full items-center rounded-3xl mb-11 bg-dark-a text-white">
-            <div class=" px-5 py-5 w-full ">
+        <div class="lg:flex w-full items-center rounded-3xl mb-5 md:mb-11 bg-dark-a text-white py-3 lg:py-0">
+            <p class="text-center font-acme text-2xl md:text-4xl  lg:hidden ">Campaign Statistics</p>
+            <div class="px-5 py-5 w-full">
                 <canvas id="myChart" class="!w-full"></canvas>
             </div>
-            <p class="text-center font-acme text-4xl w-1/3 ">Campaign Statistics</p>
+            <p class="text-center font-acme text-4xl w-1/3 hidden lg:block ">Campaign Statistics</p>
         </div>
         {{-- End Graphics --}}
 
         {{-- Bar Chart --}}
-        <div class="px-5 py-3 rounded-3xl w-10/12 mx-auto bg-dark-a">
-            <p class="text-center font-acme text-4xl mb-5 text-white">Top Up Graphics</p>
+        <div class="px-5 py-3 rounded-3xl lg:w-10/12 mx-auto bg-dark-a">
+            <p class="text-center font-acme text-2xl md:text-4xl mb-5 text-white">Top Up Graphics</p>
             <canvas id="barChart" class="!w-full"></canvas>
         </div>
         {{-- End Bar Chart --}}

@@ -4,7 +4,7 @@
     <form action={{ route('admin.store') }} method="post" enctype="multipart/form-data">
         @csrf
         <div class="w-full">
-            <div class="flex justify-start space-x-4 px-5">
+            <div class="hidden md:flex justify-start space-x-4 px-5">
                 <a href={{ route('admin.index') }}
                     class="px-6 py-2.5 bg-red text-white text-xs rounded shadow-md hover:bg-opacity-70 hover:shadow-lg transition duration-150 ease-in-out mt-5 font-acme w-28 text-center">
                     Cancel
@@ -16,8 +16,8 @@
                     </p>
                 </button>
             </div>
-            <div class="flex justify-center">
-                <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
+            <div class="md:flex justify-center">
+                <div class="md:mb-3 bg-dark-blue px-5 py-5 rounded-lg md:w-1/2 ">
                     <label for="name" class="form-label inline-block mb-2 text-white font-acme">Name</label>
                     <input type="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-acme "
@@ -72,7 +72,7 @@
                     </div>
 
                 </div>
-                <div class="mb-3 bg-dark-blue px-5 py-5 rounded-lg w-1/2 ">
+                <div class="mb-3 bg-dark-blue px-5 md:py-5 rounded-lg md:w-1/2 ">
                     <label for="exampleText0" class="form-label inline-block mb-2 text-white font-acme mt-3">Picture</label>
                     <img src="" class="preview w-1/2 mb-3 mx-auto rounded-xl shadow-2xl" alt="">
                     <input type="file"
@@ -84,6 +84,18 @@
                         </div>
                     @enderror
                 </div>
+            </div>
+            <div class="flex md:hidden justify-end space-x-4 px-5 pb-20">
+                <<a href={{ route('admin.index') }}
+                    class="px-6 py-2.5 bg-red text-white text-xs rounded shadow-md hover:bg-opacity-70 hover:shadow-lg transition duration-150 ease-in-out mt-5 font-acme w-28 text-center">
+                    Cancel
+                    </a>
+                    <button type="submit">
+                        <p
+                            class="px-6 py-2.5 bg-blue text-white text-xs rounded shadow-md hover:bg-opacity-70 hover:shadow-lg transition duration-150 ease-in-out mt-5 font-acme w-28 text-center">
+                            Save
+                        </p>
+                    </button>
             </div>
 
         </div>

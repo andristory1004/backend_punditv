@@ -18,9 +18,10 @@
                 </button>
             </div>
         @endif
-        <div class="flex mt-5 text-white font-medium font-acme space-x-5 text-xs items-center mb-5">
+        <div
+            class="md:flex mt-5 text-white font-medium font-acme space-x-5 text-xs items-center mb-5 w-full space-y-3 md:space-y-0">
             <a href={{ route('admin.create') }}
-                class="flex space-x-3 px-6 py-2 bg-blue hover:bg-opacity-70 rounded shadow-md hover:shadow-lg transition ease-in-out h-fit text-center text-white font-normal ">
+                class="flex space-x-3 px-6 py-2 bg-blue hover:bg-opacity-70 rounded shadow-md hover:shadow-lg transition ease-in-out h-fit text-center text-white font-normal justify-center">
                 <i class="fas fa-plus"></i>
                 <span class="font-acme">
                     Add Admin
@@ -29,7 +30,7 @@
             <div class=" xl:w-96">
                 <div class="input-group relative flex flex-wrap items-stretch w-full">
                     <input type="search"
-                        class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        class="form-control relative flex-auto min-w-0 block w-full px-3 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
                     <div
                         class=" bg-blue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-opacity-70 hover:shadow-lg transition duration-150 ease-in-out flex items-center"">

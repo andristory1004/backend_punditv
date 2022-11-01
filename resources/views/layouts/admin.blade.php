@@ -65,20 +65,30 @@
                     @endif
                 @endauth
 
-                <a href={{ route('user.index') }}
-                    class="{{ request()->is('user') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
-                    <img src={{ asset('icons/icon_user.png') }} alt="Icon Advertise" width="25px">
-                    <span class="font-bold text-white">
-                        User Data
-                    </span>
-                </a>
-                <a href={{ route('campaign.index') }}
-                    class="{{ request()->is('campaign') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
-                    <img src={{ asset('icons/icon_campaign.png') }} alt="Icon Advertise" width="25px">
-                    <span class="font-bold text-white">
-                        Campaign
-                    </span>
-                </a>
+                @auth
+                    @if (auth('sanctum')->user()->role_id == 2)
+                        <a href={{ route('user.index') }}
+                            class="{{ request()->is('user') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                            <img src={{ asset('icons/icon_user.png') }} alt="Icon Advertise" width="25px">
+                            <span class="font-bold text-white">
+                                User Data
+                            </span>
+                        </a>
+                    @endif
+                @endauth
+
+                @auth
+                    @if (auth('sanctum')->user()->role_id == 2)
+                        <a href={{ route('campaign.index') }}
+                            class="{{ request()->is('campaign') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                            <img src={{ asset('icons/icon_campaign.png') }} alt="Icon Advertise" width="25px">
+                            <span class="font-bold text-white">
+                                Campaign
+                            </span>
+                        </a>
+                    @endif
+                @endauth
+
                 @auth
                     @if (auth('sanctum')->user()->role_id == 2)
                         <a href={{ route('price.index') }}
@@ -88,28 +98,6 @@
                                 Price
                             </span>
                         </a>
-                        {{-- <p class="md:space-x-1 space-y-1 md:space-y-0">
-                            <a href="#collapseExample" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                                aria-expanded="false" aria-controls="collapseExample"
-                                class="{{ request()->is('campaign-price', 'earn-price') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
-                                <img src={{ asset('icons/icon_pundi.png') }} alt="Icon Advertise" width="25px">
-                                <span class="font-bold text-white">
-                                    Price
-                                </span>
-                                <i class="fas fa-caret-down"></i>
-                            </a>
-                        </p>
-                        <div class="ml-5 collapse" id="collapseExample">
-                            <a href={{ route('campaign-price.index') }}
-                                class="{{ request()->is('campaign-price', 'campaign-price/create') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
-                                Campaign Price
-                            </a>
-                            <a href=""
-                                class="{{ request()->is('price-list', 'campaign-price', 'campaign-price/create') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
-                                Earn Price
-                            </a>
-                        </div> --}}
-                    @else
                     @endif
 
                 @endauth
@@ -121,13 +109,33 @@
                         Advertise
                     </span>
                 </a>
-                <a href={{ route('transaction.index') }}
-                    class="{{ request()->is('transaction') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
-                    <img src={{ asset('icons/icon_transaction.png') }} alt="Icon Advertise" width="25px">
-                    <span class="font-bold text-white">
-                        Transaction
-                    </span>
-                </a>
+
+                @auth
+                    @if (auth('sanctum')->user()->role_id == 2)
+                        <a href={{ route('transaction.index') }}
+                            class="{{ request()->is('transaction') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                            <img src={{ asset('icons/icon_transaction.png') }} alt="Icon Advertise" width="25px">
+                            <span class="font-bold text-white">
+                                Transaction
+                            </span>
+                        </a>
+                    @else
+                    @endif
+                @endauth
+
+                @auth
+                    @if (auth('sanctum')->user()->role_id == 2)
+                        <a href={{ route('banner.index') }}
+                            class="{{ request()->is('transaction') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
+                            <img src={{ asset('icons/icon_banner.png') }} alt="Icon Advertise" width="25px">
+                            <span class="font-bold text-white">
+                                Banner
+                            </span>
+                        </a>
+                    @else
+                    @endif
+                @endauth
+
                 <a href={{ route('inbox.index') }}
                     class="{{ request()->is('inbox') ? 'bg-dark-blue rounded-l-full' : '' }} flex items-center pl-4 nav-item ml-3 hover:bg-dark-blue hover:rounded-l-full my-2 h-11 space-x-3 hover:no-underline">
                     <img src={{ asset('icons/icon_inbox.png') }} alt="Icon Advertise" width="25px">
